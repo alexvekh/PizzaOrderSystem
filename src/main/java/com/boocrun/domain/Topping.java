@@ -3,10 +3,14 @@ package com.boocrun.domain;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -20,7 +24,7 @@ public class Topping {
   private Set<Pizza> pizzas = new HashSet<>();
   
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   public Long getId() {
     return id;
   }
