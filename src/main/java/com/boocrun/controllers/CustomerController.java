@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.boocrun.domain.Customer;
 import com.boocrun.repositories.CustomerRepository;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @Controller
 public class CustomerController {
   
@@ -29,8 +31,10 @@ public class CustomerController {
   }
   
   @RequestMapping(value="/customers", method=RequestMethod.POST)
-  public String customerPost (@ModelAttribute Customer customer, ModelMap model) {
-    customerRepo.save(customer);
+  public String customerPost (HttpServletRequest request, @ModelAttribute Customer customer, ModelMap model) {
+
+    Customer savedCustomer = customerRepo.save(customer);
+    request.getSession().setAttribute("customer", customer);
     return "redirect:/orders";
   }
 }

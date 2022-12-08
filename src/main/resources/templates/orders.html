@@ -5,8 +5,15 @@
   </head>
   <body>
     <h1>Create Your Order</h1>
-    <form>
-    
+    <form action="" method="post" th:object="${order}">
+      Size: 
+        <select>
+          <option value=""></option>
+          <option th:each="pizzaSize : ${pizzaSizes}" value="${pizzaSize.description}" th:text="${pizzaSize.description}">Pizza size</option>
+        </select>
+     
+      Crust Type:   <input type="text" >
+      
     </form>
   </body>
 </html>
