@@ -4,40 +4,28 @@
     <title>Place Your Order</title>
   </head>
   <body>
-    <h1>Create Your Order</h1>
-    <div th:each="pizza : ${order.pizzas}">
+    <h1>Create Your Pizza</h1>
+  <!--  <div th:each="pizza : ${order.pizzas}">
       Pizza Id: <span th:text="${pizza.id}"></span><br/>
     </div>
     <form action="" method="post">
       <buton>Add pizza to Order</buton>
     </form>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <form action="" method="post" th:object="${order}">
+    -->
+   
+    <form action="" method="post" th:object="${pizza}">
       <fieldset>
         <legend>Pizza Type</legend>
         Size: 
-          <select>
+          <select th:field="${order.pizzas.size}">
             <option value=""></option>
             <option th:each="pizzaSize : ${pizzaSizes}" value="${pizzaSize.description}" th:text="${pizzaSize.description}">Pizza size</option>
           </select>
         <br/>
         Crust Type:   
-          <select>
+          <select th:field="${order.pizzas.crustType}">
             <option value=""></option>
-            <option th:each="crustType : ${pizzaCrusts}" value="${crustType.description}" th:text="${crustType.description}">Pizza size</option>
+            <option th:each="crustType : ${pizzaCrusts}" value="${crustType.description}" th:text="${crustType.description}">Crust type</option>
           </select>
       </fieldset>
     <br/>
