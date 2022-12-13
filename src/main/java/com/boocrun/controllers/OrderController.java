@@ -17,7 +17,7 @@ import com.boocrun.repositories.ToppingRepository;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/order")
+@RequestMapping("/orders")
 public class OrderController 
 {
 
@@ -27,7 +27,6 @@ public class OrderController
   public String orderGet (ModelMap model) 
   {
 
-    
     Order order = new Order();
     model.put ("order", order);
     
@@ -35,13 +34,14 @@ public class OrderController
   }
   
   @RequestMapping(value="", method=RequestMethod.POST)
-  public String orderPost (HttpServletRequest request, @ModelAttribute Order order, ModelMap model) {
-    Customer customer = (Customer) request.getSession().getAttribute("customer");
+  public String orderPost (HttpServletRequest request, @ModelAttribute Order order, ModelMap model) 
+  {
+    Customer customer = (Customer)request.getSession().getAttribute("customer");
     order.setCustomer(customer);
     
     Order savedOrder = orderRepo.save(order);
     
-    return "redirect:/orders"+savedOrder.getId()+"/pizzas";
+    return "redirect:/orders/"+savedOrder.getId()+"/pizzas";
   }
   
 

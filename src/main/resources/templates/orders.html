@@ -5,42 +5,14 @@
   </head>
   <body>
     <h1>Create Your Order</h1>
+    
     <div th:each="pizza : ${order.pizzas}">
       Pizza Id: <span th:text="${pizza.id}"></span><br/>
     </div>
+    
     <form action="" method="post">
-      <buton>Add pizza to Order</buton>
+      <button>Add pizza to Order</button>
     </form>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <form action="" method="post" th:object="${order}">
-      <fieldset>
-        <legend>Pizza Type</legend>
-        Size: 
-          <select>
-            <option value=""></option>
-            <option th:each="pizzaSize : ${pizzaSizes}" value="${pizzaSize.description}" th:text="${pizzaSize.description}">Pizza size</option>
-          </select>
-        <br/>
-        Crust Type:   
-          <select>
-            <option value=""></option>
-            <option th:each="crustType : ${pizzaCrusts}" value="${crustType.description}" th:text="${crustType.description}">Pizza size</option>
-          </select>
-      </fieldset>
-    <br/>
-    </form>
+
   </body>
 </html>
