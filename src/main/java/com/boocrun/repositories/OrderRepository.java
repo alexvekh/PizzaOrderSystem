@@ -9,4 +9,8 @@ import com.boocrun.domain.Order;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long>{
 
+  //Order findOne(Long orderId);
+
+
+
 }

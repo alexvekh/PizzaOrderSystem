@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -31,6 +32,20 @@ public class OrderController
     model.put ("order", order);
     
     return "orders";
+  }
+  
+  @RequestMapping(value="{orderId}", method=RequestMethod.GET)
+  public String orderGet (@PathVariable Long orderId, ModelMap model) 
+  {
+    Order order = orderRepo.findOne(orderId);
+    model.put("order", order);
+    return "orders";
+  }
+  
+  @RequestMapping(value="{orderId}", method=RequestMethod.POST)
+  public String orderPost (@PathVariable Long orderId, HttpServletRequest request, @ModelAttribute Order order, ModelMap model) 
+  {
+    return "redirect:/orders/"+orderId+"/pizzas";
   }
   
   @RequestMapping(value="", method=RequestMethod.POST)
