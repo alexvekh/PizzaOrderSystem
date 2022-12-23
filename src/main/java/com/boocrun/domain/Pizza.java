@@ -1,6 +1,7 @@
 package com.boocrun.domain;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -12,7 +13,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Pizza {
+public class Pizza implements Comparable<Pizza>{
   private Long id;
   private String size;
   private String crustType;
@@ -54,6 +55,32 @@ public class Pizza {
   }
   public void setToppings(Set<Topping> toppings) {
     this.toppings = toppings;
+  }
+  
+  
+  
+  @Override
+  public int hashCode() {
+    return Objects.hash(id);
+  }
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    Pizza other = (Pizza) obj;
+    return Objects.equals(id, other.id);
+  }
+  @Override
+  public int compareTo(Pizza otherPizza) {
+    if (this.getId() == null)
+      return 1;
+    if (otherPizza.getId() == null)
+      return -1;
+    return this.getId().compareTo(otherPizza.getId());
   }
   
   

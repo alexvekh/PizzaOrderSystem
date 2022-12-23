@@ -2,6 +2,7 @@ package com.boocrun.domain;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -17,7 +18,7 @@ import jakarta.persistence.Table;
 public class Order {
   private Long id;
   private Customer customer;
-  private Set<Pizza> pizzas = new HashSet<>();
+  private Set<Pizza> pizzas = new TreeSet<>();
   private Double finalPrice;
   
   @Id

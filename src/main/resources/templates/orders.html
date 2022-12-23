@@ -7,7 +7,14 @@
     <h1>Create Your Order</h1>
     
     <div th:each="pizza : ${order.pizzas}">
-      Pizza Id: <span th:text="${pizza.id}"></span><br/>
+      
+      <fieldset>
+        <legend th:text="${'Pizza # ' + {pizza.id}}"></legend>
+      Size: <span th:text="${pizza.size}"></span><br/>
+      Crust: <span th:text="${pizza.crustType}"></span><br/>
+      Toppings: <span th:each="topping, status : ${pizza.toppings}" th:text="${status.last ? topping.description : topping.description + ', ' }"></span>
+      <!-- Toppings: Bacon, Papparoni, Sausage -->
+      </fieldset>
     </div>
     
     <form action="" method="post">
