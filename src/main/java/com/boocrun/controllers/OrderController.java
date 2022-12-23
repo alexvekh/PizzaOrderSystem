@@ -37,7 +37,8 @@ public class OrderController
   @RequestMapping(value="{orderId}", method=RequestMethod.GET)
   public String orderGet (@PathVariable Long orderId, ModelMap model) 
   {
-    Order order = orderRepo.findOne(orderId);
+    @SuppressWarnings("deprecation")
+    Order order = orderRepo.getOne(orderId);
     model.put("order", order);
     return "orders";
   }

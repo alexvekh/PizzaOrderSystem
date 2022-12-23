@@ -39,7 +39,8 @@ public class PizzaController {
   @RequestMapping(value="", method=RequestMethod.POST)
   public String pizzaPost (@ModelAttribute Pizza pizza, @PathVariable Long orderId, ModelMap model) 
   {
-    Order order = orderRepo.findOne(orderId);
+    @SuppressWarnings("deprecation")
+    Order order = orderRepo.getOne(orderId);
     
     for (Topping topping : pizza.getToppings()) 
     {
